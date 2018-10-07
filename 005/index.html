@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>构建者模式</title>
+</head>
+<body>
+
+</body>
+
+<script>
+    function Student() {
+    }
+
+    function StudentBuilder() {
+        this.student = new Student();
+        this.setName = function (name) {
+            this.student.name = name;
+        };
+
+        this.setGender = function (gender) {
+            //添加gender的判断逻辑
+            this.student.gender = gender;
+        };
+
+        this.setHairLength = function (hairLength) {
+            //添加hairkenght的判断逻辑
+            this.student.hairLength = hairLength;
+        };
+
+        this.build = function () {
+            return this.student;
+        }
+    }
+
+    let createStudent = function (name, gender, hairlength) {
+        let builder = new StudentBuilder();
+        builder.setName(name);
+        builder.setGender(gender);
+        builder.setHairLength(hairlength);
+        return builder.build();
+    };
+
+    let whh = createStudent("王花花", "男", 20);
+    console.log(whh);
+
+</script>
+</html>

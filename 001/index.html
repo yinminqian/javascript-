@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>构造器模式</title>
+</head>
+<body>
+
+</body>
+
+
+<script>
+    //es5
+    function Student(name, gender, score) {
+        this.name = name;
+        this.gender = gender;
+        this.score = score;
+        this.quiley = 100;
+        this.sumScore = function () {
+            return this.score + this.quiley;
+        }
+    }
+
+    let whh = new Student("王花花", "男", 13);
+    console.log(whh);
+
+    //es6
+    class Student_ {
+        constructor(name, gender, score) {
+            this.name = name;
+            this.gender = gender;
+            this.score = score;
+            this.quiley = 100;
+        }
+
+        sumScore() {
+            return this.score + this.quiley;
+        }
+    }
+
+    let lsd = new Student_("李拴蛋", "女", 20);
+    console.log(lsd.name, lsd.sumScore());
+</script>
+</html>

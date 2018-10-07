@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>原型模式的应用-es6</title>
+</head>
+<body>
+<table id="rootElement"></table>
+</body>
+<script>
+    let rootElement = document.querySelector("#rootElement");
+
+    class Student {
+        constructor(name, gender, score) {
+            this.name = name;
+            this.gender = gender;
+            this.score = score;
+            this.quiley = 100;
+            this.mount();
+        }
+
+        sumScore() {
+            return this.score + this.quiley;
+        }
+
+        mount() {
+            let tr = document.createElement("tr");
+            tr.innerHTML = `
+            <tr>${this.name}</tr>
+            <tr>${this.gender}</tr>
+            <tr>${this.score}</tr>
+            <tr>${this.sumScore()}</tr>
+            `;
+            rootElement.appendChild(tr);
+        }
+    }
+
+    let lsd = new Student("李拴蛋", "男", 100)
+</script>
+</html>
