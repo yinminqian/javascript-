@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>工厂模式的应用</title>
+</head>
+<body>
+<form id="create">
+    <div>
+        姓名:
+        <input type="text" name="name">
+    </div>
+    <div>
+        专业:
+        <select name="type">
+            <option value="理科">理科</option>
+            <option value="文科">文科</option>
+            <option value="体育">体育</option>
+        </select>
+    </div>
+    <button type="submit">创建学生</button>
+</form>
+
+</body>
+<script>
+    let create = document.querySelector("#create");
+    init();
+
+    function init() {
+        create.addEventListener("submit", function (e) {
+            e.preventDefault();
+            let name = document.querySelector("[name=name]").value;
+            let type = document.querySelector("[name=type]").value;
+            let student = factory(name, type);
+            console.log("sudent:", student);
+            form.reset();
+        })
+    }
+
+    class Student {
+        constructor(name, subjects) {
+            this.name = name;
+            this.subjects = subjects;
+        }
+    }
+
+    function factory(name, type) {
+        switch (type) {
+            case "文科":
+                return new Student(name, ["政治", "历史", "地理"]);
+                break;
+            case "理科":
+                return new Student(name, ["数学", "物理", "化学"]);
+                break;
+            case "体育":
+                return new Student(name, ["长跑", "游泳", "跳绳"]);
+                break;
+            default:
+                throw "没有这个学科";
+        }
+    }
+</script>
+</html>
