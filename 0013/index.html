@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>策略模式-复杂情况</title>
+</head>
+<body>
+
+</body>
+<script>
+    //教师节?
+    let teacherDay = true;
+
+    class Order {
+        constructor() {
+            this.originalPrice = 10;
+            this.paidBy = null;
+        }
+
+        //传入一个策略
+        setPaidBy(paidBy) {
+            this.paidBy = paidBy;
+        }
+
+        //返回最终价格
+        total() {
+            return this.paidBy.calac(this.originalPrice);
+        }
+    }
+
+    //学生策略
+    class StudentCard {
+        calac(total) {
+            return total;
+        }
+    }
+
+    //老师策略
+    class TeacherCard {
+        calac(total) {
+            //如果是教师节,全体老师打5折
+            //单独的判断逻辑可以在单独的策略中进行判断
+            if (teacherDay) {
+                return total * 0.5
+            }
+            return total * 0.9;
+        }
+    }
+
+    //现金策略
+    class cach {
+        calac(total) {
+            return total * 1.1;
+        }
+    }
+
+    let order = new Order();
+    order.setPaidBy(new cach());
+    console.log("order.total:", order.total());
+
+
+</script>
+</html>
