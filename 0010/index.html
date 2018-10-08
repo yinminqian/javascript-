@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>单例模式</title>
+</head>
+<body>
+
+</body>
+
+<script>
+    //单例模式:在生成一个新的对象时,继承上一次使用这个对象的值,而不是完全生成一个新的对象;
+    function Reaource() {
+        if (Reaource.instance) {
+            return Reaource.instance;
+        } else {
+            this.balance = 100;
+            Reaource.instance = this;
+            return Reaource.instance;
+        }
+    }
+
+
+    let whh = new Reaource();
+    whh.balance = 50;
+    console.log("whh:", whh);
+    let lsd = new Reaource();
+    console.log("lsd:", lsd);
+
+</script>
+</html>
