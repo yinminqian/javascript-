@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>工厂模式</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    class Student {
+        constructor(name, subjects) {
+            this.name = name;
+            this.subjects = subjects;
+        }
+    }
+
+    function factory(name, type) {
+        switch (type) {
+            case "文科":
+                return new Student(name, ["政治", "地理", "历史"]);
+                break;
+            case "理科":
+                return new Student(name, ["数学", "物理", "化学"]);
+                break;
+            case "体育":
+                return new Student(name, ["长跑", "跳绳", "游泳"]);
+                break;
+            default:
+                throw `${name}没有${type}这个专业`
+        }
+    }
+
+    let whh = factory("王花花", "理科");
+    console.log("whh:", whh);
+    let lsd = factory("王花花", "文科");
+    console.log("lsd:", lsd);
+    let zks = factory("赵可爽", "体育");
+    console.log("zks:", zks);
+    let lbb = factory("刘背背", "撒盐");
+    console.log("lbb:", lbb);
+
+
+</script>
+</html>
