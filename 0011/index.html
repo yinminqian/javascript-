@@ -40,6 +40,9 @@
         let c = new Divison(".page.c");
     }
 
+
+
+    //渲染余额
     function renderBalane() {
         let resource = new Resource();
         balane.innerText = resource.balance;
@@ -63,6 +66,8 @@
 
     }
 
+
+    //单例
     function Resource() {
         if (Resource.instance) {
             return Resource.instance;

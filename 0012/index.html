@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>策略模式-行为类</title>
+</head>
+<body>
+</body>
+<script>
+    //行为类,行为类改变程序的状态
+    class Order {
+        constructor() {
+            //订单总金额
+            this.originalPrice = 10;
+            this.paidBy = null;
+        }
+
+        //设置支付方式
+        setPaidBy(paiBy) {
+            this.paidBy = paiBy;
+        }
+
+        //    计算最终金额
+        calac() {
+            return this.paidBy.calac(this.originalPrice);
+        }
+    }
+
+    //    学生策略
+    class StudentCard {
+        calac(total) {
+            //原价
+            return total;
+        }
+    }
+
+
+    //教师策略
+    class TeacherCard {
+        calac(total) {
+            //9折
+            return total * .9;
+        }
+    }
+
+    //    现金策略
+    class Cash {
+        calac(total) {
+            //1.1折
+            return total * 1.1;
+        }
+    }
+
+    let order = new Order();
+    order.setPaidBy(new Cash());
+    console.log("order.calac:", order.calac());
+</script>
+</html>
