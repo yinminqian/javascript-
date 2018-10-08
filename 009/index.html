@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>抽象工厂模式</title>
+</head>
+<body>
+
+</body>
+<script>
+    function Student() {
+        this.intro = "学生工厂";
+    }
+
+    function Teacher() {
+        this.intro = "老师工厂";
+    }
+
+
+    //生产学生
+    function studentFactory() {
+        return new Student();
+    }
+
+    //生产老师
+    function teacherFactory() {
+        return new Teacher();
+    }
+
+    //    分发工厂
+    function userProducer(factroy) {
+        switch (factroy) {
+            case "student":
+                return studentFactory;
+                break;
+            case "teacher":
+                return teacherFactory;
+                break;
+            default:
+                throw "没有这个工厂";
+                break;
+        }
+    }
+
+    let whh = userProducer("student")("王花花", ["..."]);
+    console.log("whh:", whh);
+
+
+</script>
+</html>
