@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>单例模式的应用</title>
+</head>
+<body>
+<div>
+    <div>采购余额: <span id="balane">100</span>元</div>
+    <div class="page a">
+        部门A:
+        <input type="number">
+        <button class="add">+</button>
+        <button class="sub">-</button>
+    </div>
+    <div class="page b">
+        部门B:
+        <input type="number">
+        <button class="add">+</button>
+        <button class="sub">-</button>
+    </div>
+    <div class="page c">
+        部门C:
+        <input type="number">
+        <button class="add">+</button>
+        <button class="sub">-</button>
+    </div>
+</div>
+</body>
+<script>
+    let balane = document.querySelector("#balane");
+    init();
+
+    function init() {
+        let a = new Divison(".page.a");
+        let b = new Divison(".page.b");
+        let c = new Divison(".page.c");
+    }
+
+    function renderBalane() {
+        let resource = new Resource();
+        balane.innerText = resource.balance;
+    }
+
+
+    function Divison(element) {
+        let resource = new Resource();
+        this.el = document.querySelector(element);
+        this.elAdd = this.el.querySelector(".add");
+        this.elSub = this.el.querySelector(".sub");
+        this.elinput = this.el.querySelector("input");
+        this.elAdd.addEventListener("click", () => {
+            resource.add(this.elinput.value);
+            this.elinput.value = "";
+        });
+        this.elSub.addEventListener("click", () => {
+            resource.sub(this.elinput.value);
+            this.elinput.value = "";
+        });
+
+    }
+
+    function Resource() {
+        if (Resource.instance) {
+            return Resource.instance;
+        } else {
+            this.balance = 100;
+            Resource.instance = this;
+        }
+    }
+
+    Resource.prototype.add = function (num) {
+        this.change(num)
+    };
+
+    Resource.prototype.sub = function (num) {
+        this.change(-num)
+    };
+
+    Resource.prototype.change = function (num) {
+        if (!num) {
+            return;
+        }
+        num = parseFloat(num);
+        this.balance += num;
+        //每次改变刷新余额
+        renderBalane();
+    }
+
+</script>
+</html>
